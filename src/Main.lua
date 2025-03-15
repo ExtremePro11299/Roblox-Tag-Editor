@@ -37,6 +37,8 @@ return function(plugin, savedState)
 	end
 
 	local toggleButton = pluginButton("TagWindow", "http://www.roblox.com/asset/?id=1367281857")
+  toggleButton.ClickableWhenViewportHidden=true
+	
 	local worldViewButton = pluginButton("WorldView", "http://www.roblox.com/asset/?id=1367285594")
 
 	local store = Rodux.Store.new(Reducer, savedState)
@@ -51,7 +53,7 @@ return function(plugin, savedState)
 	end)
 
 	local info = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Right, false, false, 0, 0)
-	local gui = plugin:createDockWidgetPluginGui("TagEditor" .. nameSuffix, info)
+	local gui = plugin:CreateDockWidgetPluginGui("TagEditor" .. nameSuffix, info)
 	gui.Name = "TagEditor" .. nameSuffix
 	gui.Title = tr("PluginGui_TagEditor_Title") .. displaySuffix
 	gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
