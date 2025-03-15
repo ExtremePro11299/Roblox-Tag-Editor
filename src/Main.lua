@@ -24,7 +24,7 @@ end
 return function(plugin, savedState)
 	local displaySuffix, nameSuffix = getSuffix(plugin)
 
-	local toolbar = plugin:toolbar(tr("Toolbar_InstanceTagging_Title") .. displaySuffix)
+	local toolbar = plugin:CreateToolbar(tr("Toolbar_InstanceTagging_Title") .. displaySuffix)
 
 	local function pluginButton(key: string, icon: string): PluginToolbarButton
 		return plugin:button(
@@ -37,7 +37,7 @@ return function(plugin, savedState)
 	end
 
 	local toggleButton = pluginButton("TagWindow", "http://www.roblox.com/asset/?id=1367281857")
-  toggleButton.ClickableWhenViewportHidden=true
+    toggleButton.ClickableWhenViewportHidden=true
 	
 	local worldViewButton = pluginButton("WorldView", "http://www.roblox.com/asset/?id=1367285594")
 
@@ -58,6 +58,10 @@ return function(plugin, savedState)
 	gui.Title = tr("PluginGui_TagEditor_Title") .. displaySuffix
 	gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	gui.RootLocalizationTable = script.Parent.Localization
+	gui:BindToClose(function()
+		toggleButton:SetActive(false)
+	end)
+
 	toggleButton:SetActive(gui.Enabled)
 
 	local connection = toggleButton.Click:Connect(function()
