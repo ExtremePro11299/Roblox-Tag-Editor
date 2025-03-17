@@ -27,7 +27,7 @@ return function(plugin, savedState)
 	local toolbar = plugin:CreateToolbar(tr("Toolbar_InstanceTagging_Title") .. displaySuffix)
 
 	local function pluginButton(key: string, icon: string): PluginToolbarButton
-		return plugin:button(
+		return toolbar:CreateButton(
 			toolbar,
 			key,
 			tr("PluginButton_" .. key .. "_ToolTip"),
